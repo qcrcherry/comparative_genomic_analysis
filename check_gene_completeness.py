@@ -26,7 +26,7 @@ def get_arguments():
     required.add_argument('-q', '--query', action='store',
                           required=True,
                           help='reference sequence')
-    required.add_argument('-p', '--prefix', action='store',
+    required.add_argument('-p', '--prefix', action='store', required=True,
                           help='output files prefix')
 
     required.add_argument('-s', '--subject', action='store',nargs='+',
@@ -71,7 +71,7 @@ def merge_fasta_new(seq):
 
 def run_nucmer():
     args = get_arguments()
-    command = ["nucmer","-t",args.thread, "-p",args.prefix,args.query,'merged.fasta']  
+    command = ["nucmer","-t",str(args.thread), "-p",args.prefix,args.query,'merged.fasta']  
     subprocess.run(command,check=True)  
 
 def run_show_coords():
